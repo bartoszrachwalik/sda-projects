@@ -40,4 +40,14 @@ public class DBConfig {
             System.out.println(resultSet.getString(2));
         }
     }
+
+    public static DataSource dataSource(String url, String login, String password) {
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setUrl(url);
+        dataSource.setUsername(login);
+        dataSource.setPassword(password);
+        dataSource.setMaxTotal(MAX_TOTAL);
+        dataSource.setConnectionInitSqls(Collections.singletonList(INIT_SQL));
+        return dataSource;
+    }
 }
