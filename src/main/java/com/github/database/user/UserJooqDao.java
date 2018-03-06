@@ -37,7 +37,7 @@ public class UserJooqDao {
     }
 
     public User getByLogin(String login) {
-        return dsl.select().from(Users.USERS).where(USERS.LOGIN.eq(login)).fetchAnyInto(User.class);
+        return dsl.select().from(USERS).where(USERS.LOGIN.eq(login)).fetchAnyInto(User.class);
     }
 
     public List<User> findAll(Page page) {
@@ -60,5 +60,9 @@ public class UserJooqDao {
         dsl.newRecord(USERS, user).store();
         //alternative
 //        dsl.insertInto(USERS).columns(USERS.LOGIN, USERS.PASSWORD).values(user.getLogin(), user.getPassword()).execute();
+    }
+
+    public void deleteById(int id) {
+        dsl.deleteFrom(USERS).where(USERS.ID.eq(id)).execute();
     }
 }

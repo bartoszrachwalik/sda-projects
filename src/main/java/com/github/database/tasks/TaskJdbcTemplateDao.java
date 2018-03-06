@@ -18,19 +18,19 @@ public class TaskJdbcTemplateDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public Task getByName(String name) throws SQLException {
+    public Task getByName(String name) {
         return jdbcTemplate.queryForObject(BY_NAME, new TemplateTaskMapper(), name);
     }
 
-    public void save(String name) throws SQLException {
-        jdbcTemplate.update(INSERT,name);
+    public void save(String name) {
+        jdbcTemplate.update(INSERT, name);
     }
 
-    public void markAsDone(int userId, int taskId) throws SQLException {
+    public void markAsDone(int userId, int taskId) {
         jdbcTemplate.query(MARK_COMPLETED, new TemplateTaskMapper(), userId, taskId);
     }
 
-    public void removeCompleted() throws SQLException {
+    public void removeCompleted() {
         jdbcTemplate.query(REMOVE_COMPLETED, new TemplateTaskMapper());
     }
 }

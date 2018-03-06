@@ -11,6 +11,7 @@ public class UserPrepStateDao {
     private static final String BY_LOGIN = "select * from users where login = ?";
     private static final String FIND_ALL = "select * from users";
     private static final String SAVE = "insert into users(login,password) values(?,?)";
+    private static final String DELETE = "delete from users where id = ?";
     private DataSource dataSource;
     private UserMapper userMapper = new UserMapper();
 
@@ -35,6 +36,12 @@ public class UserPrepStateDao {
         PreparedStatement preparedStatement = dataSource.getConnection().prepareStatement(SAVE);
         preparedStatement.setString(1, login);
         preparedStatement.setString(2, password);
+        preparedStatement.executeUpdate();
+    }
+
+    public void deleteById(Long id) throws SQLException {
+        PreparedStatement preparedStatement = dataSource.getConnection().prepareStatement(DELETE);
+        preparedStatement.setLong(1, id);
         preparedStatement.executeUpdate();
     }
 }

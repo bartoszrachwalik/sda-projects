@@ -17,16 +17,16 @@ public class TaskUserJdbcTemplateDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void save(int task_id, int user_id) throws SQLException {
+    public void save(int task_id, int user_id) {
         jdbcTemplate.update(SAVE, task_id, user_id);
     }
 
-    public TaskUser getByTaskId(int task_id) throws SQLException {
+    public TaskUser getByTaskId(int task_id) {
         return jdbcTemplate.queryForObject(BY_TASK_ID, new TemplateTaskUserMapper(), task_id);
 
     }
 
-    public TaskUser getByUserId(int user_id) throws SQLException {
+    public TaskUser getByUserId(int user_id) {
         return jdbcTemplate.queryForObject(BY_USER_ID, new TemplateTaskUserMapper(), user_id);
     }
 }

@@ -12,6 +12,7 @@ class UserDao {
     private static final String BY_LOGIN = "select * from users where login = '%s'";
     private static final String FIND_ALL = "select * from users";
     private static final String SAVE = "insert into users(login,password) values('%s','%s')";
+    private static final String DELETE = "deleteById from users where id = %s";
     private DataSource dataSource;
     private UserMapper userMapper = new UserMapper();
 
@@ -31,5 +32,9 @@ class UserDao {
 
     public void save(String login, String password) throws SQLException {
         dataSource.getConnection().createStatement().executeUpdate(format(SAVE, login, password));
+    }
+
+    public void deleteById(Long id) throws SQLException {
+        dataSource.getConnection().createStatement().executeUpdate(format(DELETE, id));
     }
 }
