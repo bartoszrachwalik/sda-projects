@@ -50,4 +50,14 @@ public class DBConfig {
         dataSource.setConnectionInitSqls(Collections.singletonList(INIT_SQL));
         return dataSource;
     }
+
+    public static JdbcTemplate jdbcTemplate(String url, String login, String password) {
+        return new JdbcTemplate(dataSource(url, login, password));
+    }
+
+    public static DSLContext jooq(String url, String login, String password) {
+        DataSource dataSource = dataSource(url, login, password);
+        DSLContext dsl = DSL.using(dataSource, SQLDialect.POSTGRES_9_5);
+        return dsl;
+    }
 }
