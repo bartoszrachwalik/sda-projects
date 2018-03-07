@@ -31,10 +31,10 @@ public class TaskHibernate {
     private LocalDateTime createdAt;
 
     @Column(name = "completedAt")
-    private LocalDateTime compleatedAt;
+    private LocalDateTime completedAt;
 
-    @Column(name = "completedBY")
-    private LocalDateTime compleatedBY;
+    @Column(name = "completedBy")
+    private Long completedBy;
 
     @ManyToMany(mappedBy = "taskList")
     private List<UserHibernate> userList;
@@ -45,8 +45,8 @@ public class TaskHibernate {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", createdAt=" + createdAt +
-                ", compleatedAt=" + compleatedAt +
-                ", compleatedBY=" + compleatedBY +
+                ", compleatedAt=" + completedAt +
+                ", compleatedBy=" + completedBy +
                 ", userList=" + userList +
                 '}';
     }
